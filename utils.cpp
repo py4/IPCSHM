@@ -40,7 +40,7 @@ vector<string> tokenize(string str) {
 }
 
 
-int main() {
+/*int main() {
 	string t;
 	cout << get_sha1("/home/py4/Downloads/exampleInput",&t) << endl;
-}
+} */
