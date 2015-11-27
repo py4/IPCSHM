@@ -27,14 +27,20 @@ void Core::start() {
 	Validator* validator_b = new Validator();
 	Applier* applier = new Applier();
 
-	if(fork() == 0)
+	if(fork() == 0) {
+		cout << "[Core] forked a validator" << endl;
 		validator_a->monitor();
+	}
 	else {
-		if(fork() == 0)
+		if(fork() == 0) {
+			cout << "[Core] forked a validator" << endl;
 			validator_b->monitor();
+		}
 		else {
-			if(fork() == 0)
+			if(fork() == 0) {
+				cout << "[Core] forked an applier" << endl;
 				applier->monitor();
+			}
 			else
 				this->handle_requests();
 		}
@@ -45,7 +51,9 @@ void Core::handle_requests() {
 	cout << "[Core] start handling requests" << endl;
 	string file_name;
 	while(cin >> file_name) {
-		sm->arr[*(sm->arr_count)].file_name = file_name;
+		
+		file_name.copy(sm->arr[*(sm->arr_count)].file_name, file_name.length());
+		sm->arr[*(sm->arr_count)].file_name[file_name.length()] = '\0';
 		sm->arr[*(sm->arr_count)].flag = UNCHECKED;
 		sm->arr[*(sm->arr_count)].timestamp = time(0);
 		if(sem_init(&(sm->arr[*(sm->arr_count)].sem), 1, 1) < 0)

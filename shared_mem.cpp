@@ -3,19 +3,24 @@
 #include <sys/ipc.h>
 #include <cstdio>
 #include <iostream>
+#include "transaction.h"
+
 using namespace std;
 
 int get_mem(key_t shm_key, size_t shm_size, bool owner) {
 	int id = shmget(shm_key, shm_size, 0666 | (owner ? IPC_CREAT : 0));
-	if(id == -1)
-		perror("shmget");
+	if(id == -1) {
+		cout << "shm key:  " << shm_key << endl;
+		cout << "shm_size:  " << shm_size << endl;
+		perror("shmget here");
+	}
 	return id;
 }
 
 void* attach_mem(int id) {
 	void* ptr = shmat(id, (void*)0, 0);
 	if(ptr == (void*)(-1))
-		perror("shmat");
+		perror("shmat here");
 	return ptr;
 }
 

@@ -12,3 +12,7 @@ void Account::withdraw(int val) {
 string Account::get_id() {
 	return id;
 }
+
+int Account::get_deposit() {
+	return amount;
+}

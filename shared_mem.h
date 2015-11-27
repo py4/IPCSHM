@@ -6,7 +6,7 @@
 #define ARRC_SHM_KEY 123
 #define ARR_SHM_KEY 124
 #define ARRC_SHM_SIZE 4
-#define ARR_SHM_SIZE 1000
+#define ARR_SHM_SIZE 2000
 
 class Transaction;
 int get_mem(key_t, size_t, bool);

@@ -10,6 +10,7 @@ class Account {
 	void deposit(int);
 	void withdraw(int);
 	std::string get_id();
+	int get_deposit();
 
 	private:
 		int amount;

@@ -13,7 +13,7 @@ class Bank {
 		void deposit(std::string,int);
 		void withdraw(std::string,int);
 		void move(std::string,std::string,int);
-
+		void log();
 	private:
 		Account* get_account(std::string);
 		std::vector < Account* > accounts;
